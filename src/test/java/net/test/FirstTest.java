@@ -1,6 +1,7 @@
 package net.test;
 
-import com.test.actions.GoogleActions;
+import com.test.actions.Actions;
+
 import com.test.base.BasePage;
 import com.test.base.BaseTest;
 import com.test.pages.Pages;
@@ -12,11 +13,12 @@ public class FirstTest extends BaseTest {
 
     @Test
     public void runTest(){
-        GoogleActions act = new GoogleActions();
-        act.loadGoogle(driver);
-        act.inputQuery(Constants.BASE_QUERY);
-        act.submitQuery();
-        Assert.assertTrue(act.getSearchSize() != 0);
+
+
+        Actions.GoogleActions().loadGoogle(driver);
+        Actions.GoogleActions().inputQuery(Constants.BASE_QUERY);
+        Actions.GoogleActions().submitQuery();
+        Assert.assertTrue(Actions.GoogleActions().checkSearchResult());
 
 
 
