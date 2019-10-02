@@ -1,5 +1,5 @@
 package com.test.pages;
-
+import com.test.pages.amazon.*;
 public class Pages {
 
     private static LoginPage loginPage;
@@ -27,6 +27,33 @@ public class Pages {
             ResultsPage = new ResultsPage();
         }
         return ResultsPage;
+    }
+
+    private static AmazonStartPage AmazonStartPage;
+
+    public static AmazonStartPage AmazonStartPage() {
+        if (AmazonStartPage == null){
+            AmazonStartPage = new AmazonStartPage();
+        }
+        return AmazonStartPage;
+    }
+
+    private static AmazonResPage AmazonResPage;
+
+    public static AmazonResPage AmazonResPage() {
+        if (AmazonResPage == null){
+            AmazonResPage = new AmazonResPage();
+        }
+        return AmazonResPage;
+    }
+
+    private static BookToCheck BookToCheck;
+
+    public static BookToCheck BookToCheck() {
+        if (BookToCheck == null){
+            BookToCheck = new BookToCheck();
+        }
+        return BookToCheck;
     }
 
 

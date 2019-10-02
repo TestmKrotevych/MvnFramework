@@ -4,6 +4,8 @@ public class Actions {
 
     private static MainActions mainActions;
     private static LoginActions loginActions;
+    private static GoogleActions GoogleActions;
+    private static AmzActions AmzActions;
 
     public static MainActions mainActions() {
         if (mainActions == null) {
@@ -19,6 +21,19 @@ public class Actions {
         return loginActions;
     }
 
+    public static GoogleActions GoogleActions() {
+        if (GoogleActions == null) {
+            GoogleActions = new GoogleActions();
+        }
+        return GoogleActions;
+    }
+
+    public static AmzActions AmzActions() {
+        if (AmzActions == null) {
+            AmzActions = new AmzActions();
+        }
+        return AmzActions;
+    }
 
 }
 

@@ -10,9 +10,10 @@ public class ResultsPage extends BasePage {
 
     XPath results = new XPath("//*[@id=\"rso\"]/child::*");
 
-    public int getSearchesSize ()
+    public boolean  checkSearchResult ()
     {
-      return getElementsCount(results);
+
+      return isElementPresentWithWait(5,results);
 
     }
 

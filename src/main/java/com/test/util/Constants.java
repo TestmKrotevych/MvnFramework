@@ -16,6 +16,7 @@ public class Constants {
 
     public static String G_URL = "http://google.com";
     public static String BASE_QUERY = "Java";
+    public static String AMZ_URL ="https://www.amazon.com/";
 
 
 

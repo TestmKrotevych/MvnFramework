@@ -44,7 +44,7 @@ public class BasePage {
     /*
      * Work with elements
      */
-    public WebElement getElement(Locator locator, Object... args) {
+    protected WebElement getElement(Locator locator, Object... args) {
         By by = locator.get(args);
         return BaseTest.driver.findElement(by);
     }
