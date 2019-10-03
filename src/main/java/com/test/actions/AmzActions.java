@@ -2,10 +2,11 @@ package com.test.actions;
 
 import com.test.base.BaseActions;
 import com.test.pages.Pages;
+import com.test.util.Book;
 import com.test.util.Constants;
 import org.openqa.selenium.WebDriver;
+import java.util.ArrayList;
 
-import java.util.List;
 
 public class AmzActions extends BaseActions {
 
@@ -20,34 +21,29 @@ public class AmzActions extends BaseActions {
         Pages.AmazonStartPage().sendQ(query);
     }
 
-     public List<String[]> getAmazonBooks ()
+     public ArrayList<Book> getAmazonBooks ()
     {
         return Pages.AmazonResPage().getBooks();
     }
 
-    String[] getBook ()
+    public Book getBook ()
     {
-
         return Pages.BookToCheck().getBook();
     }
 
-    public boolean checkBookPresence (WebDriver driver, List<String[]> books)
+    public boolean checkBookPresence (WebDriver driver, ArrayList<Book> books)
     {
-
-       
-        driver.get(Pages.BookToCheck().url);
-        String [] checkBook = getBook();
+        driver.get(Constants.CHECK_BOOK);
         boolean check=false;
+       /* if (books.contains(getBook()))
+        { check=true;}*/
         for (int i=0; i<books.size(); i++)
         {
-            if (checkBook[0].equals(books.get(i)[0]) && checkBook[1].equals(books.get(i)[1]))
+            if (getBook().getTitle().equals(books.get(i).getTitle()) && getBook().getAuthor().equals(books.get(i).getAuthor()))
             {   check=true;
                 break;
             }
         }
-
         return check;
     }
-
-
 }

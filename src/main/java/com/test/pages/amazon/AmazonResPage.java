@@ -1,58 +1,38 @@
 package com.test.pages.amazon;
 
 import com.test.base.BasePage;
+import com.test.locators.Locator;
 import com.test.locators.XPath;
+import com.test.util.Book;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class AmazonResPage extends BasePage {
-    XPath results = new XPath("//*[@id=\"search\"]/div[1]/div[2]/div/span[3]/div[1]/child::*");
+    Locator results = new XPath("//div[contains(@class, 's-search-results')]/div[contains(@class, 's-result-item')]");
+    Locator title =new XPath("//div[h2]//a/span");
+    Locator author = new XPath("//div[h2]//div/*[2]");
 
-     List<WebElement> goods ()
+    public int countResults ()
     {
-        waitForElementVisibility(results);
-        return getElements(results);
+        return getElementsCount(results);
     }
 
-    String getAuthor (WebElement element)
+    public ArrayList<Book> getBooks ()
     {
-        String author=null;
-        try
-        {
-            List<WebElement> authors=element.findElements(By.xpath("./div/span/div/div/div[2]/div[3]/div/div[1]/div/child::*"));
-
-            author=authors.get(1).getText(); }
-        catch (Exception e)
-        {
-            author="Not retrieved";
+        ArrayList<Book> books = new ArrayList<>();
+        Locator temptitle;
+        Locator tempauthor;
+        for (int i=1; i<=countResults(); i++)
+        {   temptitle = new XPath( results+"["+i+"]"+title);
+            tempauthor = new XPath(results+"["+i+"]"+author);
+            if (isElementPresent(tempauthor))
+            {
+                books.add(new Book(getElementText("Ttl got",temptitle),getElementText("Auth got",tempauthor)));
+            }
         }
-        return author;
-    }
-
-    String getTitle (WebElement titlepart)
-    {
-        String title = null;
-        title=titlepart.findElement(By.xpath("./div/span/div/div/div[2]/div[3]/div/div[1]/h2/a/span")).getText();
-
-        return title;
-
-    }
-
-    public List<String[]> getBooks ()
-    {   List<String[]> books = new ArrayList<String[]>();
-        String[] book;
-        for (WebElement element:goods())
-        {
-
-            book=new String[] {getTitle(element),getAuthor(element)};
-            books.add(book);
-        }
-
         return books;
     }
-
-
 }

@@ -2,33 +2,23 @@ package com.test.pages.amazon;
 
 import com.test.base.BasePage;
 import com.test.locators.ID;
+import com.test.locators.Locator;
 import com.test.locators.XPath;
+import com.test.util.Book;
 
 public class BookToCheck extends BasePage {
-    public String url ="https://www.amazon.com/Head-First-Java-Kathy-Sierra/dp/0596009208/ref=sr_1_3";
-    ID titleID = new ID("productTitle");
-    XPath author = new XPath("//*[@id=\"bylineInfo\"]/span[1]/span[1]/a[1]");
 
-    String getTitle ()
+    Locator titleID = new ID("productTitle");
+    Locator auth =new XPath("//div[@id='bylineInfo']//a[@data-asin]");
+
+    public String getTitle ()
     {
         return getElement(titleID).getText();
     }
-
-    String getAuthor ()
+    public String getAuthor ()
     {
-        return  getElement(author).getText();
-    }
+        return  getElements(auth).get(0).getText(); }
 
-    public String [] getBook ()
-    {
-        String[] book= new String[] {getTitle(),getAuthor()};
-
-
-
-        return book;
-    }
-
-
-
-
+    public Book getBook ()
+    { return new Book(getTitle(),getAuthor()); }
 }

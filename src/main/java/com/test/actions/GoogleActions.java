@@ -7,27 +7,18 @@ import org.openqa.selenium.WebDriver;
 
 public class GoogleActions  extends BaseActions {
 
-
     public void loadGoogle (WebDriver driver)
     {
         driver.get(Constants.BASE_URL);
-
         wait(5);
-
     }
     public void inputQuery (String query)
     {
-
-
         Pages.StartGooglePage().sendQ(query);
-
-
-
     }
 
     public void submitQuery ()
     {
-
         Pages.StartGooglePage().submit();
     }
 
@@ -35,7 +26,4 @@ public class GoogleActions  extends BaseActions {
     {
         return Pages.ResultsPage().checkSearchResult();
     }
-
-
-
 }
